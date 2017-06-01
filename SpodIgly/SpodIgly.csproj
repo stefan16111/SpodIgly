@@ -99,6 +99,8 @@
     <Content Include="Content\Covers\8.png" />
     <Content Include="Content\Covers\9.png" />
     <Content Include="Content\Covers\aa9760ef-b6dc-4242-a788-2573cfc4732d.jpg" />
+    <Content Include="Content\Site-prototype.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\Genre-icons\alternative.png" />
     <Content Include="Content\Genre-icons\classics.png" />
     <Content Include="Content\Genre-icons\electro.png" />
@@ -134,6 +136,12 @@
     <Content Include="Content\Images\twitter-share.png" />
     <Content Include="Content\Images\upload.png" />
     <Content Include="Global.asax" />
+    <Content Include="Prototype\Cart.html" />
+    <Content Include="Prototype\Login-placeholder.html" />
+    <Content Include="Prototype\Main.html" />
+    <Content Include="Prototype\OrdersList.html" />
+    <Content Include="Prototype\Product-details.html" />
+    <Content Include="Prototype\ProductList.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
