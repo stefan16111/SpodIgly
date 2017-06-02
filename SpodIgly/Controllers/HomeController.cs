@@ -8,10 +8,15 @@ namespace SpodIgly.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
         public ActionResult Index()
         {
-            //github repo
+            
+            return View();
+        }
+
+        public ActionResult Index2()
+        {
+
             return View();
         }
     }
