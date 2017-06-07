@@ -6,18 +6,24 @@ using System.Web.Mvc;
 
 namespace SpodIgly.Controllers
 {
-    public class HomeController : Controller
+    public class StoreController : Controller
     {
+        // GET: Store
         public ActionResult Index()
         {
-            
             return View();
         }
 
-        public ActionResult StaticContent(string viewname)
+        public ActionResult Details(int id)
         {
 
-            return View(viewname);
+            return View();
+        }
+
+        public ActionResult List(string genrename)
+        {
+
+            return View();
         }
     }
 }

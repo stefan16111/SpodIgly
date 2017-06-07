@@ -1133,7 +1133,6 @@ footer {
     height: 42px;
     background-color: #585858;
     margin-top: 75px;
-    /*overflow: hidden;*/
 }
 
     footer nav {
@@ -1150,13 +1149,15 @@ footer {
 
             footer nav ul li {
                 font-size: 14px;
-                color: white;
                 float: left;
+                color: white;
                 margin-left: 55px;
             }
 
                 footer nav ul li a, footer nav ul li a:hover, footer nav ul li a:visited, footer nav ul li a:active, footer nav ul li a:link {
                     color: white;
+                    display: block;
+                    padding: 12px 16px;
                 }
 
                     footer nav ul li a:hover {
@@ -1214,4 +1215,3 @@ footer {
                 vertical-align: middle; 
                 margin-right: 30px;
             }*/
-
