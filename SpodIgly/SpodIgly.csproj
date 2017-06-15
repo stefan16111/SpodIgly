@@ -171,6 +171,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructures\AppConfig.cs" />
+    <Compile Include="Infrastructures\UrlHelpers.cs" />
     <Compile Include="Migrations\201706091308430_InitialCreate.cs" />
     <Compile Include="Migrations\201706091308430_InitialCreate.Designer.cs">
       <DependentUpon>201706091308430_InitialCreate.cs</DependentUpon>
@@ -181,6 +183,7 @@
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
