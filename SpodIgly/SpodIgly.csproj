@@ -212,6 +212,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructures\AppConfig.cs" />
+    <Compile Include="Infrastructures\DefaultCacheProvider.cs" />
+    <Compile Include="Infrastructures\ICacheProvider.cs" />
     <Compile Include="Infrastructures\ProductDetailsDynamicNodeProvider.cs" />
     <Compile Include="Infrastructures\ProductListDynamicNodeProvider.cs" />
     <Compile Include="Infrastructures\UrlHelpers.cs" />
