@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SpodIgly.Infrastructures
+namespace SpodIgly.Infrastructure
 {
     public static class UrlHelpers
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Caching;
 
-namespace SpodIgly.Infrastructures
+namespace SpodIgly.Infrastructure
 {
     public class DefaultCacheProvider : ICacheProvider
     {

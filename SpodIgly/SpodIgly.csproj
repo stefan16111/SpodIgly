@@ -257,13 +257,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructures\AppConfig.cs" />
-    <Compile Include="Infrastructures\Consts.cs" />
-    <Compile Include="Infrastructures\DefaultCacheProvider.cs" />
-    <Compile Include="Infrastructures\ICacheProvider.cs" />
-    <Compile Include="Infrastructures\ProductDetailsDynamicNodeProvider.cs" />
-    <Compile Include="Infrastructures\ProductListDynamicNodeProvider.cs" />
-    <Compile Include="Infrastructures\UrlHelpers.cs" />
+    <Compile Include="Infrastructure\AppConfig.cs" />
+    <Compile Include="Infrastructure\Consts.cs" />
+    <Compile Include="Infrastructure\DefaultCacheProvider.cs" />
+    <Compile Include="Infrastructure\ICacheProvider.cs" />
+    <Compile Include="Infrastructure\ISessionManager.cs" />
+    <Compile Include="Infrastructure\ProductDetailsDynamicNodeProvider.cs" />
+    <Compile Include="Infrastructure\ProductListDynamicNodeProvider.cs" />
+    <Compile Include="Infrastructure\SessionManager.cs" />
+    <Compile Include="Infrastructure\UrlHelpers.cs" />
     <Compile Include="Migrations\201706091308430_InitialCreate.cs" />
     <Compile Include="Migrations\201706091308430_InitialCreate.Designer.cs">
       <DependentUpon>201706091308430_InitialCreate.cs</DependentUpon>

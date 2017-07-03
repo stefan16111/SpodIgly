@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SpodIgly.Infrastructures
+namespace SpodIgly.Infrastructure
 {
-    public class ProductDetailsDynamicNodeProvider : DynamicNodeProviderBase
+    public class ProductListDynamicNodeProvider : DynamicNodeProviderBase
     {
         private StoreContext db = new StoreContext();
 
@@ -16,13 +16,12 @@ namespace SpodIgly.Infrastructures
         {
             var returnValue = new List<DynamicNode>();
 
-            foreach(Album a in db.Albums)
+            foreach (Genre g in db.Genres)
             {
                 DynamicNode n = new DynamicNode();
-                n.Title = a.AlbumTitle;
-                n.Key = "Album_" + a.AlbumId;
-                n.ParentKey = "Genre_" + a.GenreId;
-                n.RouteValues.Add("id", a.AlbumId);
+                n.Title = g.Name;
+                n.Key = "Genre_" + g.GenreId;
+                n.RouteValues.Add("genrename", g.Name);
                 returnValue.Add(n);
             }
 
