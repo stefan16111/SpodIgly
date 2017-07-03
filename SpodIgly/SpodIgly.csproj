@@ -265,6 +265,7 @@
     <Compile Include="Infrastructure\ProductDetailsDynamicNodeProvider.cs" />
     <Compile Include="Infrastructure\ProductListDynamicNodeProvider.cs" />
     <Compile Include="Infrastructure\SessionManager.cs" />
+    <Compile Include="Infrastructure\ShoppingCartManager.cs" />
     <Compile Include="Infrastructure\UrlHelpers.cs" />
     <Compile Include="Migrations\201706091308430_InitialCreate.cs" />
     <Compile Include="Migrations\201706091308430_InitialCreate.Designer.cs">
@@ -272,6 +273,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\OrderItem.cs" />

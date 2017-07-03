@@ -1,5 +1,5 @@
 ﻿using SpodIgly.DAL;
-using SpodIgly.Infrastructures;
+using SpodIgly.Infrastructure;
 using SpodIgly.Models;
 using SpodIgly.ViewModels;
 using System;
