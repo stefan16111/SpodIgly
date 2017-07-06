@@ -1,14 +1,32 @@
-﻿using SpodIgly.ViewModels;
+﻿using SpodIgly.App_Start;
+using SpodIgly.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace SpodIgly.Controllers
 {
     public class AccountController : Controller
     {
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
