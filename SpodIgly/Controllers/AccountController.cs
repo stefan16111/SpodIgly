@@ -8,6 +8,9 @@ using System.Web.Mvc;
 using Microsoft.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using SpodIgly.Models;
+using System.Threading.Tasks;
 
 namespace SpodIgly.Controllers
 {
@@ -27,6 +30,26 @@ namespace SpodIgly.Controllers
             }
         }
 
+        private ApplicationSignInManager _signInManager;
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set { _signInManager = value; }
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
+
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -34,16 +57,37 @@ namespace SpodIgly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 return View(model);
             }
-            else
+
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            switch (result)
             {
-                return RedirectToAction("Index", "Home");
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("loginerror", "nieudana próba logowania");
+                    return View(model);
             }
+
+        }
+
+        public ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Register()
@@ -52,16 +96,38 @@ namespace SpodIgly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, UserData = new UserData() };
+
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
             }
-            else
+
+            return View(model);
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach( var error in result.Errors)
             {
-                return RedirectToAction("Index", "Home");
+                ModelState.AddModelError("", error);
             }
+        }
+
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

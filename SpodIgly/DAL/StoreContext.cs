@@ -1,4 +1,5 @@
-﻿using SpodIgly.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SpodIgly.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace SpodIgly.DAL
 {
-    public class StoreContext : DbContext 
+    public class StoreContext : IdentityDbContext<ApplicationUser> 
     {
         public StoreContext() : base("StoreContext")
         {
@@ -17,6 +18,11 @@ namespace SpodIgly.DAL
         static StoreContext()
         {
             Database.SetInitializer<StoreContext>(new StoreInitializer());
+        }
+
+        public static StoreContext Create()
+        {
+            return new StoreContext();
         }
 
         public DbSet<Album> Albums { get; set; }
