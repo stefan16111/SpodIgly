@@ -10,6 +10,9 @@ namespace SpodIgly.Models
     {
         public int OrderId { get; set; }
 
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
         [StringLength(150)]
         public string FirstName { get; set; }
 
