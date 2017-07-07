@@ -47,12 +47,26 @@
     }
     <div style="text-align: center;">
         <a href="@Url.Action("Register")" >Nie mam jeszce konta</a>
+
+        <br /><br />
+
+        @using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+
+            <button type="submit" id="FacebookLoginButton" name="provider" value="Facebook" title="Log in using your Facebook account"></button>
+
+            <button type="submit" id="GoogleLoginButton" name="provider" value="Google" title="Log in using your Google account"></button>
+        }
+
     </div>
 </div>
 
 @section ScriptsBottom{
+   
     
 <script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery-migrate-3.0.0.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
