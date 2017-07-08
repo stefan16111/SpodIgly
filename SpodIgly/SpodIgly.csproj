@@ -319,6 +319,14 @@
     <Compile Include="Migrations\201707071130074_manageUser.Designer.cs">
       <DependentUpon>201707071130074_manageUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707081217509_order.cs" />
+    <Compile Include="Migrations\201707081217509_order.Designer.cs">
+      <DependentUpon>201707081217509_order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707081235351_orderuser.cs" />
+    <Compile Include="Migrations\201707081235351_orderuser.Designer.cs">
+      <DependentUpon>201707081235351_orderuser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -370,6 +378,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Shared\_ManageLayout.cshtml" />
+    <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\OrderConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -389,6 +399,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707071130074_manageUser.resx">
       <DependentUpon>201707071130074_manageUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707081217509_order.resx">
+      <DependentUpon>201707081217509_order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707081235351_orderuser.resx">
+      <DependentUpon>201707081235351_orderuser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
