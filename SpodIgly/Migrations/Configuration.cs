@@ -16,6 +16,7 @@ namespace SpodIgly.Migrations
         protected override void Seed(SpodIgly.DAL.StoreContext context)
         {
             StoreInitializer.SeedStoreData(context);
+            StoreInitializer.InitializeIdentityForEF(context);
 
             //  This method will be called after migrating to the latest version.
 

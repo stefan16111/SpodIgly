@@ -6,6 +6,10 @@ using System.Data.Entity;
 using SpodIgly.Models;
 using SpodIgly.Migrations;
 using System.Data.Entity.Migrations;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using SpodIgly.App_Start;
 
 namespace SpodIgly.DAL
 {
@@ -56,6 +60,37 @@ namespace SpodIgly.DAL
             context.SaveChanges();
         }
 
+        public static void InitializeIdentityForEF(StoreContext db)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
+            //var userMAnager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //var roleMAnager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
+            const string name = "admin@admin.pl";
+            const string password = "Administrator1!";
+            const string roleName = "Admin";
+
+            var user = userManager.FindByName(name);
+            if(user == null)
+            {
+                user = new ApplicationUser { UserName = name, Email = name, UserData = new UserData() };
+                var result = userManager.Create(user, password);
+                result = userManager.SetLockoutEnabled(user.Id, false);
+            }
+
+            var role = roleManager.FindByName(roleName);
+            if(role == null)
+            {
+                role = new IdentityRole(roleName);
+                var roleResult = roleManager.Create(role);
+            }
+
+            var rolesForUser = userManager.GetRoles(user.Id);
+            if (!rolesForUser.Contains(role.Name))
+            {
+                var result = userManager.AddToRole(user.Id, role.Name);
+            }
+        }
     }
 }
