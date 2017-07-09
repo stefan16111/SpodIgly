@@ -55,5 +55,7 @@ namespace SpodIgly.DAL
             albums.ForEach(a => context.Albums.AddOrUpdate(a));
             context.SaveChanges();
         }
+
+
     }
 }

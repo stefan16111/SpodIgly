@@ -53,7 +53,9 @@ namespace SpodIgly.Models
 
     public enum OrderState
     {
+        [Display(Name = "nowe")]
         New,
+        [Display(Name = "Wysłane")]
         Shipped
     }
 }
