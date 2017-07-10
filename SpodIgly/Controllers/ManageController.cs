@@ -354,7 +354,7 @@ namespace SpodIgly.Controllers
             else
                 ViewBag.EditMode = false;
 
-            var result = new EditProductViewModel();
+            var result = new ViewModels.EditProductViewModel();
             var genres = db.Genres.ToArray();
             result.Genres = genres;
             result.ConfirmSuccess = confirmSuccess;
@@ -376,7 +376,7 @@ namespace SpodIgly.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddProduct(HttpPostedFileBase file, EditProductViewModel model)
+        public ActionResult AddProduct(HttpPostedFileBase file, ViewModels.EditProductViewModel model)
         {
             if (model.Album.AlbumId > 0)
             {
@@ -419,7 +419,6 @@ namespace SpodIgly.Controllers
                     return View(model);
                 }
             }
-
         }
 
         public ActionResult HideProduct(int albumId)

@@ -57,6 +57,11 @@
                 <div id="product-details-info">
                     Prrzesyłka do 48 godzin
                 </div>
+
+                @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("AddProduct", "Manage", new { albumId = Model.AlbumId})" style="margin-top: 20px; font-weight: bold; display: block;">Edytuj</a>
+                }
             </div>
 
         </section>
