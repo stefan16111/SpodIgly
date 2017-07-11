@@ -1,4 +1,5 @@
-﻿using SpodIgly.Models;
+﻿using Postal;
+using SpodIgly.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace SpodIgly.ViewModels
 {
-    public class OrderConfirmationEmail
+    public class OrderConfirmationEmail : Email
     {
         public string To { get; set; }
         public decimal Cost { get; set; }

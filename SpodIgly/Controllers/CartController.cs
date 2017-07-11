@@ -115,6 +115,17 @@ namespace SpodIgly.Controllers
 
                 shoppingCartManager.EmptyCart();
 
+                var order = db.Orders.Include("OrderItems").Include("OrderItems.Album").SingleOrDefault(o => o.OrderId == newOrder.OrderId);
+
+                OrderConfirmationEmail email = new OrderConfirmationEmail();
+                email.To = order.Email;
+                email.Cost = order.TotalPrice;
+                email.OrderNumber = order.OrderId;
+                email.FullAddress = string.Format("{0} {1}, {2}, {3}", order.FirstName, order.LastName, order.Address, order.CodeAndCity);
+                email.OrderItems = order.OrderItems;
+                email.CoverPath = AppConfig.PhotosFolderRelative;
+                email.Send();
+
                 return RedirectToAction("OrderConfirmation");
             }
             else
