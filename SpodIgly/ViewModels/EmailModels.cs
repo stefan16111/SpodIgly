@@ -18,7 +18,7 @@ namespace SpodIgly.ViewModels
         public string CoverPath { get; set; }
     }
 
-    public class OrderShippedEmail
+    public class OrderShippedEmail : Email
     {
         public string To { get; set; }
         public int OrderId { get; set; }

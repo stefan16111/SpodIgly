@@ -20,6 +20,7 @@ namespace SpodIgly.Controllers
 {
     public class ManageController : Controller
     {
+        private IMailService mailService;
         StoreContext db = new StoreContext();
 
         public enum ManageMessageId
@@ -29,6 +30,11 @@ namespace SpodIgly.Controllers
             RemoveLoginSuccess,
             LinkSuccess,
             Error
+        }
+
+        public ManageController(IMailService mailService)
+        {
+            this.mailService = mailService;
         }
 
         private ApplicationUserManager _userManager;
@@ -296,6 +302,9 @@ namespace SpodIgly.Controllers
                 //email.OrderId = orderToModify.OrderId;
                 //email.FullAddress = string.Format("{0} {1}, {2}, {3}", orderToModify.FirstName, orderToModify.LastName, orderToModify.Address, orderToModify.CodeAndCity);
                 //email.Send();
+
+                mailService.SendOrderShippedEmail(orderToModify);
+
             }
 
             return order.OrderState;

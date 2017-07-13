@@ -1,17 +1,13 @@
-﻿using Hangfire;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using SpodIgly.App_Start;
 using SpodIgly.DAL;
 using SpodIgly.Infrastructure;
 using SpodIgly.Models;
 using SpodIgly.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace SpodIgly.Controllers
@@ -19,12 +15,14 @@ namespace SpodIgly.Controllers
     public class CartController : Controller
     {
         private ShoppingCartManager shoppingCartManager;
-        private ISessionManager sessionManager { get; set; }
+        private ISessionManager sessionManager;
         private StoreContext db = new StoreContext();
+        private IMailService mailService;
 
-        public CartController()
+        public CartController(IMailService mailService, ISessionManager sessionManager)
         {
-            this.sessionManager = new SessionManager();
+            this.mailService = mailService;
+            this.sessionManager = sessionManager;
             this.shoppingCartManager = new ShoppingCartManager(this.sessionManager, this.db);
         }
 
@@ -121,7 +119,7 @@ namespace SpodIgly.Controllers
 
                 string url = Url.Action("SendConfirmationEmail", "Manage", new { orderid = newOrder.OrderId, lastname = newOrder.LastName });
 
-                BackgroundJob.Enqueue(() => Helpers.CallUrl(url));
+                this.mailService.SendOrderConfirmationEmail(order);
 
                 return RedirectToAction("OrderConfirmation");
             }
