@@ -51,7 +51,7 @@ namespace SpodIgly.Tests
             Assert.IsTrue(viewModel.Bestsellers.Count() == 3);
             Assert.IsTrue(viewModel.NewArrivals.Count() == 3);
 
-        }
+            }
 
         [TestMethod]
         public void StaticContentAction_WithViewNamePassed_ReturnsViewTheSameName()
