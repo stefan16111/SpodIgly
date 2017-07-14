@@ -25,11 +25,11 @@ namespace SpodIgly.DAL
             return new StoreContext();
         }
 
-        public DbSet<Album> Albums { get; set; }
+        public virtual DbSet<Album> Albums { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
 
-        public DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderItem> OrderItems { get; set; }
     }

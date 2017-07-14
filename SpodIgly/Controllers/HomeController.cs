@@ -13,7 +13,16 @@ namespace SpodIgly.Controllers
     public class HomeController : Controller
     {
 
-        private StoreContext db = new StoreContext();
+        private StoreContext db;
+
+        private ICacheProvider cache;
+
+        public HomeController(StoreContext context, ICacheProvider cache)
+        {
+            this.cache = cache;
+            this.db = context;
+        }
+
 
         public ActionResult Index()
         {

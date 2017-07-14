@@ -32,9 +32,15 @@ namespace SpodIgly.Controllers
             Error
         }
 
-        public ManageController(IMailService mailService)
+        public ManageController(StoreContext context, IMailService mailService)
         {
             this.mailService = mailService;
+            this.db = context;
+        }
+
+        public ManageController(ApplicationUserManager userManager)
+        {
+            UserManager = userManager;
         }
 
         private ApplicationUserManager _userManager;
